@@ -3,7 +3,8 @@
   "version": "0.1",
   "description": "This Chrome extension is for a final project for CS4235. It has various SQL and XSS attacks built in and allows for quick access to these in order to test your website's security.",
   "browser_action": {
-    "default_icon": "icon.png"
+    "default_icon": "icon.png",
+    "popup": "popup.html"
   },
   "permissions": [
     "http://api.flickr.com/"
