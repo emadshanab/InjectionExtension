@@ -3,7 +3,7 @@
   "version": "0.1",
   "description": "This Chrome extension is for a final project for CS4235. It has various SQL and XSS attacks built in and for testing your website's security.",
   "background_page": "background.html",
-  "permissions": ["contextMenus"],
+  "permissions": ["contextMenus", "tabs"],
   "content_scripts": [
     {
       "matches": ["http://*/*"],
