@@ -12,10 +12,12 @@ jQuery ->
   inject = (type, attack) ->
     inputs = document.getElementsByTagName 'input'
     for input in inputs
-      attack = "<script>alert('" + input.name + " is vulnerable to XSS.');</script>" if type == 2
+      attack = xss(input.name) if type == 2
       
       input.type = 'text' if input.type == 'email'
 
       input.value = attack
       console.log input.value
 
+  xss= (name) ->
+    "<script>alert('" + name + " is vulnerable to XSS.');</script>"
