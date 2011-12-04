@@ -3,7 +3,7 @@ jQuery ->
     if request.type == 1 || request.type == 2
       sendResponse
         acknowledged: "Mission accepted."
-        inject request.type, request.attack
+      inject request.type, request.attack
     else
       sendResponse
         acknowledged: "Mission denied."

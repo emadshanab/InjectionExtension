@@ -3,9 +3,10 @@
     var inject;
     chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
       if (request.type === 1 || request.type === 2) {
-        return sendResponse({
+        sendResponse({
           acknowledged: "Mission accepted."
-        }, inject(request.type, request.attack));
+        });
+        return inject(request.type, request.attack);
       } else {
         return sendResponse({
           acknowledged: "Mission denied."
