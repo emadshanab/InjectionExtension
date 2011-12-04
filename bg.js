@@ -1,23 +1,30 @@
-$(document).ready(function() {
-  var attacks = [];
-  attacks[1] = "sql attack";
-  attacks[2] = "xss attack";
 
-  chrome.contextMenus.create({"title": "SQL Injection", "onclick": function(data) { 
-    console.log(data.menuItemId);
-    send_attack(data.menuItemId);
-  }});
-  chrome.contextMenus.create({"title": "XSS Injection", "onclick": function(data) {
-    console.log(data.menuItemId);
-    send_attack(data.menuItemId);
-  }});
-
-  function send_attack(atk) {
-    console.log("Sending attack: " + attacks[atk]);
-    chrome.tabs.getSelected(null, function(tab) {
-      chrome.tabs.sendRequest(tab.id, {type: atk, attack: attacks[atk]}, function(response) {
-        console.log(response.acknowledged);
-      });
+  jQuery(function() {
+    var attacks, send_attack;
+    attacks = ["", "sql attack", "xss attack"];
+    chrome.contextMenus.create({
+      "title": "SQL Injection",
+      "onclick": function(data) {
+        console.log(data.menuItemId);
+        return send_attack(data.menuItemId);
+      }
     });
-  }
-});
+    chrome.contextMenus.create({
+      "title": "XSS Injection",
+      "onclick": function(data) {
+        console.log(data.menuItemId);
+        return send_attack(data.menuItemId);
+      }
+    });
+    return send_attack = function(type) {
+      console.log("Sending attack: " + attacks[type]);
+      return chrome.tabs.getSelected(null, function(tab) {
+        return chrome.tabs.sendRequest(tab.id, {
+          type: type,
+          attack: attacks[type]
+        }, function(response) {
+          return console.log(response.acknowledged);
+        });
+      });
+    };
+  });
