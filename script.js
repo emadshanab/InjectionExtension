@@ -20,6 +20,9 @@
       for (_i = 0, _len = inputs.length; _i < _len; _i++) {
         input = inputs[_i];
         if (type === 2) attack = xss(input.name);
+        if (type === 2 && input.type === 'password') {
+          attack = xss('password_field');
+        }
         if (input.type === 'email') input.type = 'text';
         input.value = attack;
         _results.push(console.log(input.value));

@@ -13,6 +13,7 @@ jQuery ->
     inputs = document.getElementsByTagName 'input'
     for input in inputs
       attack = xss(input.name) if type == 2
+      attack = xss('password_field') if type == 2 && input.type == 'password' 
       
       input.type = 'text' if input.type == 'email'
 
