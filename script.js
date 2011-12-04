@@ -1,7 +1,10 @@
 $(document).ready(function() {
   chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
     console.log(sender.tag ? "from a content script:" + sender.tab.url : "from the extension");
-    if (request.attack == "xss") {
+    if (request.type == 1) {
+      sendResponse({acknowledged: "Mission accepted."});
+      sql_injection(request.attack);
+    } else if (request.type == 2) {
       sendResponse({acknowledged: "Mission accepted."});
       xss_injection();
     } else {
@@ -15,7 +18,7 @@ $(document).ready(function() {
     });
   }
 
-  function sql_injection() {
-    alert('sql hello');
+  function sql_injection(sql) {
+    console.log(sql);
   }
 });
