@@ -1,24 +1,22 @@
 $(document).ready(function() {
   chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
     console.log(sender.tag ? "from a content script:" + sender.tab.url : "from the extension");
-    if (request.type == 1) {
+    if (request.type == 1 || request.type == 2) {
       sendResponse({acknowledged: "Mission accepted."});
-      sql_injection(request.attack);
-    } else if (request.type == 2) {
-      sendResponse({acknowledged: "Mission accepted."});
-      xss_injection();
+      inject(request.type, request.attack);
     } else {
       sendResponse({acknowledged: "Mission denied."});
     }
   });
 
-  function xss_injection() {
+  function inject(type, attack) {
     $('input').each(function() {
-      console.log($(this).attr('name'));
-    });
-  }
+      if (type == 2) {
+        attack = "<script>alert('" + $(this).attr('name') + " is vulnerable to XSS attacks.');</script>";
+      }
 
-  function sql_injection(sql) {
-    console.log(sql);
+      $(this).val(attack);
+      console.log($(this).val());
+    });
   }
 });
