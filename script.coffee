@@ -10,10 +10,12 @@ jQuery ->
 
 
   inject = (type, attack) ->
-    $('input').each ->
-      attack = "<script>alert('" + $(this).attr('name') + " is vulnerable to XSS.');</script>" if type == 2
+    inputs = document.getElementsByTagName 'input'
+    for input in inputs
+      attack = "<script>alert('" + input.name + " is vulnerable to XSS.');</script>" if type == 2
       
       # Reminder to self to go and change the email field types to text
 
-      $(this).val(attack)
-      console.log $(this).val()
+      input.value = attack
+      console.log input.value
+

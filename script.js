@@ -14,12 +14,17 @@
       }
     });
     return inject = function(type, attack) {
-      return $('input').each(function() {
+      var input, inputs, _i, _len, _results;
+      inputs = document.getElementsByTagName('input');
+      _results = [];
+      for (_i = 0, _len = inputs.length; _i < _len; _i++) {
+        input = inputs[_i];
         if (type === 2) {
-          attack = "<script>alert('" + $(this).attr('name') + " is vulnerable to XSS.');</script>";
+          attack = "<script>alert('" + input.name + " is vulnerable to XSS.');</script>";
         }
-        $(this).val(attack);
-        return console.log($(this).val());
-      });
+        input.value = attack;
+        _results.push(console.log(input.value));
+      }
+      return _results;
     };
   });
