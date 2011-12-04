@@ -11,8 +11,7 @@ jQuery ->
 
   inject = (type, attack) ->
     $('input').each ->
-      if type == 2
-        attack = "<script>alert('" + $(this).attr('name') + " is vulnerable to XSS.');</script>"
+      attack = "<script>alert('" + $(this).attr('name') + " is vulnerable to XSS.');</script>" if type == 2
 
       $(this).val(attack)
       console.log $(this).val()
