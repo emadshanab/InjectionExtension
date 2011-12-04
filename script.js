@@ -22,6 +22,7 @@
         if (type === 2) {
           attack = "<script>alert('" + input.name + " is vulnerable to XSS.');</script>";
         }
+        if (input.type === 'email') input.type = 'text';
         input.value = attack;
         _results.push(console.log(input.value));
       }

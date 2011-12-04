@@ -14,7 +14,7 @@ jQuery ->
     for input in inputs
       attack = "<script>alert('" + input.name + " is vulnerable to XSS.');</script>" if type == 2
       
-      # Reminder to self to go and change the email field types to text
+      input.type = 'text' if input.type == 'email'
 
       input.value = attack
       console.log input.value
