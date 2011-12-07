@@ -58,6 +58,10 @@ $(document).ready(function() {
     return "a';DROP TABLE users;";
   }
 
+  attacks[1][2] = function(name) {
+    return "a’;SELECT * FROM users WHERE 't' = 't';";
+  }
+
   /* Basic XSS */
   attacks[2][0] = function(name) {
     return "<script>alert('"+name+" is vulnerable to XSS.');</script>";
