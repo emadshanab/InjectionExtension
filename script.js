@@ -49,6 +49,11 @@ $(document).ready(function() {
     }
   }
 
+  /* Basic SQL */
+  attacks[1][0] = function(name) {
+    return "' or '1'='1' -- '";
+  }
+
   /* Basic XSS */
   attacks[2][0] = function(name) {
     return "<script>alert('"+name+" is vulnerable to XSS.');</script>";
