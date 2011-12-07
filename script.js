@@ -32,6 +32,10 @@ $(document).ready(function() {
         input.type = 'text';
       }
 
+      if (input.type === 'checkbox') {
+        input.checked = 'checked';
+      }
+
       input.value = injection;
       console.log(input.value);
     }
