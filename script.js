@@ -18,6 +18,8 @@ $(document).ready(function() {
   /* Basic XSS */
   attacks[2][0] = function() {
     var inputs  = document.getElementsByTagName('input');
+    var textareas = document.getElementsByTagName('textarea');
+
     for (i in inputs) {
       var input = inputs[i];
       var injection;
@@ -42,6 +44,11 @@ $(document).ready(function() {
 
       input.value = injection;
       console.log(input.value);
+    }
+
+    for (t in textareas) {
+      var textarea = textareas[t];
+      textarea.value = injection;
     }
   }
 });
