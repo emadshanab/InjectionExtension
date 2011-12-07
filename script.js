@@ -58,4 +58,9 @@ $(document).ready(function() {
   attacks[2][1] = function(nume) {
     return "@import\"javascript:alert('XSS')\";"
   }
+  
+  /* Attribute attack */
+  attacks[2][2] = function(name) {
+    return "\"><script>alert('"+name+" is vulnerable to an attribute attack.');</script>";
+  }
 });
