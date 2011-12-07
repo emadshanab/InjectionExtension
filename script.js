@@ -48,6 +48,7 @@ $(document).ready(function() {
 
     for (t in textareas) {
       var textarea = textareas[t];
+      injection = "<script>alert('" + textarea.name + " is vulnerable to XSS.');</script>"
       textarea.value = injection;
     }
   }
