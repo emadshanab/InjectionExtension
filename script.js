@@ -11,12 +11,7 @@ $(document).ready(function() {
   });
 
   function inject(type, attack) {
-    attack = attacks[type][attack];
-    attack();
-  }
-
-  /* Basic XSS */
-  attacks[2][0] = function() {
+    var attack = attacks[type][attack];
     var inputs  = document.getElementsByTagName('input');
     var textareas = document.getElementsByTagName('textarea');
 
@@ -25,9 +20,9 @@ $(document).ready(function() {
       var injection;
       
       if (input.type === 'password') {
-        injection = "<script>alert('password_field is vulnerable to XSS.');</script>";
+        injection = attack('password_field');
       } else {
-        injection = "<script>alert('" + input.name + " is vulnerable to XSS.');</script>"
+        injection = attack(input.name);
       }
 
       if (input.type === 'email') { 
@@ -48,8 +43,14 @@ $(document).ready(function() {
 
     for (t in textareas) {
       var textarea = textareas[t];
-      injection = "<script>alert('" + textarea.name + " is vulnerable to XSS.');</script>"
+      injection = attack(textarea.name);
       textarea.value = injection;
+      console.log(textarea.value);
     }
+  }
+
+  /* Basic XSS */
+  attacks[2][0] = function(name) {
+    return "<script>alert('"+name+" is vulnerable to XSS.');</script>";
   }
 });
