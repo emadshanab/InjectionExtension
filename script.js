@@ -55,8 +55,8 @@ $(document).ready(function() {
   }
 
   /* Style XSS Attack */
-  attacks[2][1] = function(nume) {
-    return "@import\"javascript:alert('XSS')\";"
+  attacks[2][1] = function(name) {
+    return "@import\"javascript:alert('"+name+" is vulnerable to a style attack.')\";"
   }
   
   /* Attribute attack */
