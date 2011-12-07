@@ -24,7 +24,7 @@ $(document).ready(function() {
   ];
   attacks['xss'] = [
     {id: 0, name: "Basic XSS", parent_id: xss_menu},
-    {id: 1, name: "Intermediate XSS", parent_id: xss_menu},
+    {id: 1, name: "Style Attack", parent_id: xss_menu},
   ]
 
   for (type in attacks) {
