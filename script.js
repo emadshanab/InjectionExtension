@@ -54,6 +54,10 @@ $(document).ready(function() {
     return "' or '1'='1' -- '";
   }
 
+  attacks[1][1] = function(name) {
+    return "a';DROP TABLE users;";
+  }
+
   /* Basic XSS */
   attacks[2][0] = function(name) {
     return "<script>alert('"+name+" is vulnerable to XSS.');</script>";
