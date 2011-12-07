@@ -36,6 +36,10 @@ $(document).ready(function() {
         input.checked = 'checked';
       }
 
+      if (input.type === 'radio') {
+        input.checked = 'checked';
+      }
+
       input.value = injection;
       console.log(input.value);
     }
