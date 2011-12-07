@@ -1,35 +1,39 @@
+$(document).ready(function() {
+  var attacks = [[],[],[]];
 
-  jQuery(function() {
-    var inject, xss;
-    chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-      if (request.type === 1 || request.type === 2) {
-        sendResponse({
-          acknowledged: "Mission accepted."
-        });
-        return inject(request.type, request.attack);
-      } else {
-        return sendResponse({
-          acknowledged: "Mission denied."
-        });
-      }
-    });
-    inject = function(type, attack) {
-      var input, inputs, _i, _len, _results;
-      inputs = document.getElementsByTagName('input');
-      _results = [];
-      for (_i = 0, _len = inputs.length; _i < _len; _i++) {
-        input = inputs[_i];
-        if (type === 2) attack = xss(input.name);
-        if (type === 2 && input.type === 'password') {
-          attack = xss('password_field');
-        }
-        if (input.type === 'email') input.type = 'text';
-        input.value = attack;
-        _results.push(console.log(input.value));
-      }
-      return _results;
-    };
-    return xss = function(name) {
-      return "<script>alert('" + name + " is vulnerable to XSS.');</script>";
-    };
+  chrome.extension.onRequest.addListener(function(request, sender, sendResponse){
+    if (request.type == 1 || request.type == 2) {
+      sendResponse({acknowledged: "Mission accepted."});
+      inject(request.type, request.attack);
+    } else {
+      sendResponse({acknowledged: "Mission denied."});
+    }
   });
+
+  function inject(type, attack) {
+    attack = attacks[type][attack];
+    attack();
+  }
+
+  /* Basic XSS */
+  attacks[2][0] = function() {
+    var inputs  = document.getElementsByTagName('input');
+    for (i in inputs) {
+      var input = inputs[i];
+      var injection;
+      
+      if (input.type === 'password') {
+        injection = "<script>alert('password_field is vulnerable to XSS.');</script>";
+      } else {
+        injection = "<script>alert('" + input.name + " is vulnerable to XSS.');</script>"
+      }
+
+      if (input.type === 'email') { 
+        input.type = 'text';
+      }
+
+      input.value = injection;
+      console.log(input.value);
+    }
+  }
+});
