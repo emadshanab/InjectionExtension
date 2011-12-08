@@ -38,14 +38,16 @@ $(document).ready(function() {
       }
 
       input.value = injection;
-      console.log(input.value);
+      console.log("Injecting input "+input.name+" with an attack.");
     }
 
     for (t in textareas) {
       var textarea = textareas[t];
       injection = attack(textarea.name);
       textarea.value = injection;
-      console.log(textarea.value);
+      if (textarea.name != undefined) {
+        console.log("Injecting textarea "+textarea.name+" with an attack.");
+      }
     }
   }
 
