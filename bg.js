@@ -20,7 +20,7 @@ $(document).ready(function() {
   var attacks = [];
   attacks['sql'] = [
     {id: 0, name: "Basic SQL", parent_id: sql_menu},
-    {id: 1, name: "DROP TABLE users", parent_id: sql_menu}
+    {id: 1, name: "DROP TABLE users", parent_id: sql_menu},
     {id: 2, name: "SELECT * FROM users", parent_id: sql_menu}
   ];
   attacks['xss'] = [
