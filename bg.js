@@ -26,11 +26,13 @@ $(document).ready(function() {
   ];
   attacks['xss'] = [
     {id: 0, name: "Basic XSS", parent_id: xss_menu},
-    {id: 1, name: "Style Attack", parent_id: xss_menu},
-    {id: 2, name: "Attribute Attack", parent_id: xss_menu},
+    {id: 1, name: "Style attack", parent_id: xss_menu},
+    {id: 2, name: "Attribute attack", parent_id: xss_menu},
     {id: 3, name: "Redirect cookie steal", parent_id: xss_menu},
-    {id: 4, name: "src/href Attack", parent_id: xss_menu},
-    {id: 5, name: "Ponies?", parent_id: xss_menu},
+    {id: 4, name: "src/href attack", parent_id: xss_menu},
+    {id: 5, name: "encoded XSS", parent_id: xss_menu},
+    {id: 6, name: "URL XSS atack", parent_id: xss_menu},
+    {id: 7, name: "Ponies?", parent_id: xss_menu},
   ]
 
   for (type in attacks) {
