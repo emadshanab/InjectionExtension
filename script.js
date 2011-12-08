@@ -97,6 +97,6 @@ $(document).ready(function() {
 
   /* src/href attack */
   attacks[2][4] = function(name) {
-    return "javascript:consoloe.log('"+name+"');alert('"+name+" is vulnerable to XSS.');"
+    return "javascript:console.log('"+name+"');alert('"+name+" is vulnerable to XSS.');"
   }
 });
