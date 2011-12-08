@@ -1,7 +1,7 @@
 {
-  "name": "CS4235 Final Project",
+  "name": "Injection Extension",
   "version": "0.1",
-  "description": "This Chrome extension is for a final project for CS4235. It has various SQL and XSS attacks built in and for testing your website's security.",
+  "description": "Test your website for a couple of basic and simple SQL and XSS attacks. Will inject every form on the page with the specified attack so you don't have to do it manually.",
   "background_page": "background.html",
   "permissions": ["contextMenus", "tabs"],
   "content_scripts": [
