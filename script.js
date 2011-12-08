@@ -57,7 +57,7 @@ $(document).ready(function() {
   /* XSS debug assistance: creates a paragraph with some text that can be searched for by JS to notify
      of XSS vulnerabilities. */
   var js_debug = function(name) {
-    return "<p style='color:red;font-weight:bold;' class='vulnerable_input_found'>"+name+" is vulnerable to XSS attacks.</p>";
+    return "$('body').append('<p class=\\'xss_vulnerable\\' style=\\'color:red;font-weight:bold;\\'>"+name+" is vulnerable to XSS.</p>');";
   }
 
   /* Basic SQL */
@@ -77,7 +77,7 @@ $(document).ready(function() {
 
   /* Basic XSS */
   attacks[2][0] = function(name) {
-    return "<script>alert('"+name+" is vulnerable to XSS.');</script>";
+    return "<script>console.log('"+name+" is vulnerable to XSS.');"+js_debug(name)+"</script>";
   }
 
   /* Style XSS Attack */
