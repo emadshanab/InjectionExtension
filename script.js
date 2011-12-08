@@ -53,6 +53,11 @@ $(document).ready(function() {
   var sql_debug = function(name) {
     return "CREATE TABLE sql_vuln IF NOT EXISTS (field VARCHAR); INSERT INTO sql_vuln VALUES('"+name+"');"; 
   }
+
+  var js_debug = function(name) {
+    return "<p style='color:red;font-weight:bold;' class='vulnerable_input_found'>"+name+" is vulnerable to XSS attacks.</p>";
+  }
+
   attacks[1][0] = function(name) {
     return "' or '1'='1' -- '" + sql_debug(name);
   }
