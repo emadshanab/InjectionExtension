@@ -23,6 +23,9 @@ $(document).ready(function() {
     {id: 1, name: "DROP TABLE users", parent_id: sql_menu},
     {id: 2, name: "SELECT * FROM users", parent_id: sql_menu},
     {id: 3, name: "Insert injection", parent_id: sql_menu},
+    {id: 4, name: "Bypass blacklisting", parent_id: sql_menu},
+    {id: 5, name: "Blind injection", parent_id: sql_menu},
+    {id: 6, name: "Exec blind injection", parent_id: sql_menu},
   ];
   attacks['xss'] = [
     {id: 0, name: "Basic XSS", parent_id: xss_menu},
